@@ -20,7 +20,7 @@ var getData = function() {
 	// Execute an AJAX request to get the data in data/response.js
 	var data;
 	$.ajax({
-		 url:'response.json',
+		 url:'data/response.json',
 		 type: "get",
 		 success:function(dat) {
 		   data = dat
