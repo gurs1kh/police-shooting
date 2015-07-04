@@ -1,1 +1,21 @@
-/* You'll probably want to add some styles here */
+#container {
+	float: left;
+	width: 50%;
+	height: 500px;
+}
+
+#info {
+	float: left;
+	width: 30%;
+	padding: 1em;
+	padding-top: 0;
+}
+
+h1 {
+	font-size: 20px;
+}
+
+.term {
+	font-weight: bold;
+}
+
