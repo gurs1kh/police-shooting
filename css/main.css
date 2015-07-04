@@ -19,3 +19,7 @@ h1 {
 	font-weight: bold;
 }
 
+#slider {
+	width: 50%;
+	clear:left;
+}

@@ -69,12 +69,10 @@ var customBuild = function(data, map) {
 	
 	min = Math.floor(min / 5) * 5;
 	max = Math.ceil(max / 5) * 5;
-	//setupSlider(min, max, circles);
+	setupSlider(min, max, map, circles);
 }
 
-function setupSlider(min, max, circles) {
-	console.log("min " + min);
-	console.log("max " + max);
+function setupSlider(min, max, map, circles) {
 	var slider = document.getElementById("slider");
 	var steps = [];
 	for (var i = min; i <= max; i++) {
@@ -100,6 +98,10 @@ function setupSlider(min, max, circles) {
 	});
 	
 	slider.noUiSlider.on("change", function() {
-		console.log(circles);
+		circles.map(function(circle) { map.removeLayer(circle) });
+		circles.filter(function(circle) {
+			var vals = slider.noUiSlider.get();
+			return circle.year >= vals[0] && circle.year <= vals[1];
+		}).map(function(circle) { circle.addTo(map); });
 	});
 }
