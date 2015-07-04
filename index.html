@@ -16,10 +16,18 @@
   </head>
 
   <body>
-    <div id="container"></div>
+	<div id="map"></div>
 	<div id="info"></div>
-	<div id="slider"></div>
-    <script>
+	<div id="year-range">
+		<div id="slider"></div>
+		<div id="year-inputs">
+			<label for="min-year">Min Year</label>
+			<input id="min-year" type="number" />
+			<label for="max-year">Max Year</label>
+			<input id="max-year" type="number" />
+		</div>
+	</div>
+	<script>
 		drawMap();
     </script>
   </body>

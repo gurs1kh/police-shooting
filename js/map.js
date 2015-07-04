@@ -1,5 +1,5 @@
 var drawMap = function() {
-	var map = L.map("container");
+	var map = L.map("map");
 	map.setView([40, -95], 4);
 	layer = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png");
 	layer.addTo(map);
@@ -73,6 +73,10 @@ var customBuild = function(data, map) {
 }
 
 function setupSlider(min, max, map, circles) {
+	$("#min-year, #max-year").attr("min", min).attr("max", max);
+	$("#min-year").val(min);
+	$("#max-year").val(max);
+	
 	var slider = document.getElementById("slider");
 	var steps = [];
 	for (var i = min; i <= max; i++) {
@@ -98,10 +102,21 @@ function setupSlider(min, max, map, circles) {
 	});
 	
 	slider.noUiSlider.on("change", function() {
-		circles.map(function(circle) { map.removeLayer(circle) });
-		circles.filter(function(circle) {
-			var vals = slider.noUiSlider.get();
-			return circle.year >= vals[0] && circle.year <= vals[1];
-		}).map(function(circle) { circle.addTo(map); });
+		var vals = slider.noUiSlider.get();
+		updateMap(map, circles, vals);
+		$("#min-year").val(Math.round(vals[0]));
+		$("#max-year").val(Math.round(vals[1]));
 	});
+	
+	$("#min-year, #max-year").on("change", function() {
+		slider.noUiSlider.set([$("#min-year").val(), $("#max-year").val()]);
+		updateMap(map, circles, slider.noUiSlider.get());
+	});
+}
+
+function updateMap(map, circles, vals) {
+	circles.map(function(circle) { map.removeLayer(circle) });
+	circles.filter(function(circle) {
+		return circle.year >= vals[0] && circle.year <= vals[1];
+	}).map(function(circle) { circle.addTo(map); });
 }

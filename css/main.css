@@ -1,14 +1,16 @@
-#container {
+#map {
 	float: left;
 	width: 50%;
 	height: 500px;
 }
 
 #info {
-	float: left;
-	width: 30%;
-	padding: 1em;
+	float: right;
+	width: 48%;
+	padding-left: 1%;
 	padding-top: 0;
+	background-color: cyan;
+	border-left: 2px solid blue;
 }
 
 h1 {
@@ -19,7 +21,13 @@ h1 {
 	font-weight: bold;
 }
 
-#slider {
-	width: 50%;
-	clear:left;
+#year-range {
+	width: 45%;
+	clear: left;
+	margin-top: 1em;
+}
+
+#year-inputs {
+	clear: left;
+	margin-top: 50px;
 }
